@@ -1,3 +1,5 @@
+# maps routes to their respective backend names. paths are matched on the
+# beginning of the string, so be mindful of keeping these base paths unique!
 /knack-services  server_knack_services
 /legacy-scripts server_legacy_scripts
 /ctr-data-lake server_ctr_data_lake
