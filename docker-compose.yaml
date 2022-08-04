@@ -1,0 +1,51 @@
+version: "3"
+services:
+  haproxy:
+    image: haproxy:2.4
+    restart: always
+    depends_on:
+      - postgrest-legacy-scripts
+      - postgrest-knack-services
+      - postgrest-ctr-data-lake
+      - postgrest-parking
+    ports:
+      - "8000:80"
+    volumes:
+      - "./haproxy/config:/usr/local/etc/haproxy:ro"
+      - "./haproxy/maps:/etc/haproxy/maps:ro"
+  postgrest-legacy-scripts:
+    image: postgrest/postgrest
+    restart: always
+    environment:
+      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/legacy_scripts
+      PGRST_DB_SCHEMA: api
+      PGRST_DB_ANON_ROLE: web_anon
+      PGRST_JWT_SECRET: $PGRST_JWT_SECRET_LEGACY_SCRIPTS
+      PGREST_MAX_ROWS: $PGREST_MAX_ROWS
+  postgrest-knack-services:
+    image: postgrest/postgrest
+    restart: always
+    environment:
+      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/knack_services
+      PGRST_DB_SCHEMA: api
+      PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
+      PGRST_JWT_SECRET: $PGRST_JWT_SECRET_KNACK_SERVICES
+      PGREST_MAX_ROWS: $PGREST_MAX_ROWS
+  postgrest-ctr-data-lake:
+    image: postgrest/postgrest
+    restart: always
+    environment:
+      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/ctr_data_lake
+      PGRST_DB_SCHEMA: api
+      PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
+      PGRST_JWT_SECRET: $PGRST_JWT_SECRET_CTR_DATA_LAKE
+      PGREST_MAX_ROWS: 10000
+  postgrest-parking:
+    image: postgrest/postgrest
+    restart: always
+    environment:
+      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/parking
+      PGRST_DB_SCHEMA: api
+      PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
+      PGRST_JWT_SECRET: $PGRST_JWT_SECRET_PARKING
+      PGREST_MAX_ROWS: 10000
