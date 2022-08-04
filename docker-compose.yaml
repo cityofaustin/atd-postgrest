@@ -9,7 +9,7 @@ services:
       - postgrest-ctr-data-lake
       - postgrest-parking
     ports:
-      - "8000:80"
+      - "80:80"
     volumes:
       - "./haproxy/config:/usr/local/etc/haproxy:ro"
       - "./haproxy/maps:/etc/haproxy/maps:ro"
