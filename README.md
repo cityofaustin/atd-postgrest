@@ -4,6 +4,13 @@
 
 This repository contains configuration files for orchestrating Austin Transportation's [PostgREST](https://postgrest.org/) services.
 
+## Table of contents
+
+- [Design](#design)
+- [Services](#services)
+- [Configuration](#configuration)
+- [Get it running](#get-it-running)
+
 ## Design
 
 ATD relies on multiple postgREST services. These services are fronted by a single [HAProxy](http://www.haproxy.org/) load balancer, which functiones as a reverse proxy to route requests to each postgREST instance.
@@ -45,3 +52,9 @@ This file defines the HAProxy configuration. Each "backend" postgREST service mu
 ### `happroxy/maps/routes.map`
 
 This filed defines which how an inbound HTTP request's path will be mapped to the various backend postgREST services. See the comments in that file for details.
+
+## Get it running
+
+1. Modify `docker-compose.yaml`, `haproxy.cfg`, and `routes.map` as needed.
+2. Create an environment file in the root directory. Name it `env`.
+3. Start the services: `$ docker-compose --env-file env up -d`
