@@ -53,7 +53,7 @@ services:
     image: postgrest/postgrest
     restart: always
     environment:
-      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/parking
+      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/road_conditions
       PGRST_DB_SCHEMA: api
       PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_ROAD_CONDITIONS
