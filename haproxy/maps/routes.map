@@ -4,3 +4,4 @@
 /legacy-scripts server_legacy_scripts
 /ctr-data-lake server_ctr_data_lake
 /parking server_parking
+/road-conditions server_road_conditions
