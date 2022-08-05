@@ -19,10 +19,13 @@ The root endpoint is available at [http://atd-postgrest.austinmobility.io/](http
 
 ## Services
 
-- knack services ([repo](https://github.com/cityofaustin/atd-knack-services)) - (`/knack-services/`)
-- legacy scripts ([repo](https://github.com/cityofaustin/atd-data-deploy)) - (`/legacy-scripts/`)
-- parking ([repo](https://github.com/cityofaustin/atd-parking-data)) - (`/parking/`)
-- data lake ([repo](https://github.com/cityofaustin/atd-data-lake)) - (`/ctr-data-lake/`)
+| name | repo | route |
+|-|-|-|
+| knack services | [atd-knack-services](https://github.com/cityofaustin/atd-knack-services) | `/knack-services/`|
+|legacy scripts | [atd-data-deploy](https://github.com/cityofaustin/atd-data-deploy) | `/legacy-scripts/` |
+|parking| [atd-parking-data](https://github.com/cityofaustin/atd-parking-data) | `/parking/` |
+| CTR data lake | [atd-data-lake](https://github.com/cityofaustin/atd-data-lake) | `/ctr-data-lake/` |
+| road conditions| [atd](https://github.com/cityofaustin/atd-road-conditions) | `/road-conditions/` |
 
 ## Configuration
 
