@@ -13,7 +13,7 @@ This repository contains configuration files for orchestrating Austin Transporta
 
 ## Design
 
-ATD relies on multiple postgREST services. These services are fronted by a single [HAProxy](http://www.haproxy.org/) load balancer, which functiones as a reverse proxy to route requests to each postgREST instance.
+ATD relies on multiple postgREST services. These services are fronted by a single [HAProxy](http://www.haproxy.org/) load balancer, which functions as a reverse proxy to route requests to each postgREST instance.
 
 The root endpoint is available at [http://atd-postgrest.austinmobility.io/](http://atd-postgrest.austinmobility.io/).
 
