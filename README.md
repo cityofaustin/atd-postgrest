@@ -18,6 +18,7 @@ This repository contains configuration files for orchestrating Austin Transporta
     - [`happroxy/maps/routes.map`](#happroxymapsroutesmap)
   - [Get it running](#get-it-running)
   - [Deployment](#deployment)
+  - [Maintenance](#maintenance)
 
 ## Design
 
@@ -72,8 +73,18 @@ This filed defines which how an inbound HTTP request's path will be mapped to th
 
 ## Deployment
 
+Docker is configured on the production server to restart on boot.
+
 The script `/scripts/docker-keepalive.sh` checks if the HAProxy service is running, and restarts all containers if not. This script is deployed to the prod server's crontab to run every hour.
 
 You can inspect the crontab with `sudo crontab -l`.
 
+## Maintenance
+
 Any changes to this repository must be manually pulled on the prod server.
+
+If you make changes to the schema, permissions, or secrets of any of the running postgREST services, you will need to restart the docker-compose service. 
+
+```
+$ docker-compose --env-file env restart
+```
