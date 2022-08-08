@@ -6,10 +6,18 @@ This repository contains configuration files for orchestrating Austin Transporta
 
 ## Table of contents
 
-- [Design](#design)
-- [Services](#services)
-- [Configuration](#configuration)
-- [Get it running](#get-it-running)
+- [atd-postgrest](#atd-postgrest)
+  - [Table of contents](#table-of-contents)
+  - [Design](#design)
+  - [Services](#services)
+  - [Configuration](#configuration)
+    - [Environment variables](#environment-variables)
+    - [Docker](#docker)
+    - [HAProxy](#haproxy)
+    - [`happroxy/config/haproxy.cfg`](#happroxyconfighaproxycfg)
+    - [`happroxy/maps/routes.map`](#happroxymapsroutesmap)
+  - [Get it running](#get-it-running)
+  - [Deployment](#deployment)
 
 ## Design
 
@@ -61,3 +69,9 @@ This filed defines which how an inbound HTTP request's path will be mapped to th
 1. Modify `docker-compose.yaml`, `haproxy.cfg`, and `routes.map` as needed.
 2. Create an environment file in the root directory. Name it `env`.
 3. Start the services: `$ docker-compose --env-file env up -d`
+
+## Deployment
+
+The script `/scripts/docker-keepalive.sh` checks if the HAProxy service is running, and restarts all containers if not. This script is deployed to the prod server's crontab to run every hour.
+
+Any changes to this repository must be manually pulled on the prod server.
