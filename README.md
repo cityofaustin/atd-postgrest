@@ -74,4 +74,6 @@ This filed defines which how an inbound HTTP request's path will be mapped to th
 
 The script `/scripts/docker-keepalive.sh` checks if the HAProxy service is running, and restarts all containers if not. This script is deployed to the prod server's crontab to run every hour.
 
+You can inspect the crontab with `sudo crontab -l`.
+
 Any changes to this repository must be manually pulled on the prod server.
