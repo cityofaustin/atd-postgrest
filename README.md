@@ -6,14 +6,23 @@ This repository contains configuration files for orchestrating Austin Transporta
 
 ## Table of contents
 
-- [Design](#design)
-- [Services](#services)
-- [Configuration](#configuration)
-- [Get it running](#get-it-running)
+- [atd-postgrest](#atd-postgrest)
+  - [Table of contents](#table-of-contents)
+  - [Design](#design)
+  - [Services](#services)
+  - [Configuration](#configuration)
+    - [Environment variables](#environment-variables)
+    - [Docker](#docker)
+    - [HAProxy](#haproxy)
+    - [`happroxy/config/haproxy.cfg`](#happroxyconfighaproxycfg)
+    - [`happroxy/maps/routes.map`](#happroxymapsroutesmap)
+  - [Get it running](#get-it-running)
+  - [Deployment](#deployment)
+  - [Maintenance](#maintenance)
 
 ## Design
 
-ATD relies on multiple postgREST services. These services are fronted by a single [HAProxy](http://www.haproxy.org/) load balancer, which functiones as a reverse proxy to route requests to each postgREST instance.
+ATD relies on multiple postgREST services. These services are fronted by a single [HAProxy](http://www.haproxy.org/) load balancer, which functions as a reverse proxy to route requests to each postgREST instance.
 
 The root endpoint is available at [http://atd-postgrest.austinmobility.io/](http://atd-postgrest.austinmobility.io/).
 
@@ -61,3 +70,21 @@ This filed defines which how an inbound HTTP request's path will be mapped to th
 1. Modify `docker-compose.yaml`, `haproxy.cfg`, and `routes.map` as needed.
 2. Create an environment file in the root directory. Name it `env`.
 3. Start the services: `$ docker-compose --env-file env up -d`
+
+## Deployment
+
+Docker is configured on the production server to restart on boot.
+
+The script `/scripts/docker-keepalive.sh` checks if the HAProxy service is running, and restarts all containers if not. This script is deployed to the prod server's crontab to run every hour.
+
+You can inspect the crontab with `sudo crontab -l`.
+
+## Maintenance
+
+Any changes to this repository must be manually pulled on the prod server.
+
+If you make changes to the schema, permissions, or secrets of any of the running postgREST services, you will need to restart the docker-compose service. 
+
+```
+$ docker-compose --env-file env restart
+```
