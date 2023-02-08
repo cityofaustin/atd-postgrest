@@ -58,7 +58,7 @@ services:
       PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_ROAD_CONDITIONS
       PGREST_MAX_ROWS: 10000
-  postgrest-road-conditions:
+  postgrest-bond-reporting:
     image: postgrest/postgrest
     restart: always
     environment:
