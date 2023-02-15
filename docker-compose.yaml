@@ -8,6 +8,7 @@ services:
       - postgrest-knack-services
       - postgrest-ctr-data-lake
       - postgrest-parking
+      - postgrest-bond-reporting
     ports:
       - "80:80"
     volumes:
@@ -57,4 +58,13 @@ services:
       PGRST_DB_SCHEMA: api
       PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_ROAD_CONDITIONS
+      PGREST_MAX_ROWS: 10000
+  postgrest-bond-reporting:
+    image: postgrest/postgrest
+    restart: always
+    environment:
+      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/bond_reporting
+      PGRST_DB_SCHEMA: api
+      PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
+      PGRST_JWT_SECRET: $PGRST_JWT_SECRET_BOND_REPORTING
       PGREST_MAX_ROWS: 10000
