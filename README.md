@@ -28,14 +28,14 @@ The root endpoint is available at [http://atd-postgrest.austinmobility.io/](http
 
 ## Services
 
-| name | repo | route |
-|-|-|-|
-| knack services | [atd-knack-services](https://github.com/cityofaustin/atd-knack-services) | `/knack-services/`|
-|legacy scripts | [atd-data-deploy](https://github.com/cityofaustin/atd-data-deploy) | `/legacy-scripts/` |
-|parking| [atd-parking-data](https://github.com/cityofaustin/atd-parking-data) | `/parking/` |
-| CTR data lake | [atd-data-lake](https://github.com/cityofaustin/atd-data-lake) | `/ctr-data-lake/` |
-| road conditions| [atd-road-conditions](https://github.com/cityofaustin/atd-road-conditions) | `/road-conditions/` |
-| bond reporting| [atd-bond-reporting](https://github.com/cityofaustin/atd-bond-reporting) | `/bond-reporting/` |
+| name            | repo                                                                       | route               |
+| --------------- | -------------------------------------------------------------------------- | ------------------- |
+| knack services  | [atd-knack-services](https://github.com/cityofaustin/atd-knack-services)   | `/knack-services/`  |
+| legacy scripts  | [atd-data-deploy](https://github.com/cityofaustin/atd-data-deploy)         | `/legacy-scripts/`  |
+| parking         | [atd-parking-data](https://github.com/cityofaustin/atd-parking-data)       | `/parking/`         |
+| CTR data lake   | [atd-data-lake](https://github.com/cityofaustin/atd-data-lake)             | `/ctr-data-lake/`   |
+| road conditions | [atd-road-conditions](https://github.com/cityofaustin/atd-road-conditions) | `/road-conditions/` |
+| bond reporting  | [atd-bond-reporting](https://github.com/cityofaustin/atd-bond-reporting)   | `/bond-reporting/`  |
 
 ## Configuration
 
@@ -84,7 +84,7 @@ You can inspect the crontab with `sudo crontab -l`.
 
 Any changes to this repository must be manually pulled on the prod server.
 
-If you make changes to the schema, permissions, or secrets of any of the running postgREST services, you will need to restart the docker-compose service. 
+If you make changes to the schema, permissions, or secrets of any of the running postgREST services, you will need to restart the docker-compose service.
 
 ```
 $ docker-compose --env-file env restart
