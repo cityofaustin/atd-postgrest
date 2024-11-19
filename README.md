@@ -48,7 +48,7 @@ Because each of the services's databases are hosted in the same RDS cluster, the
 - `PG_PASSWORD`: the postgres password
 - `PGREST_MAX_ROWS`: the maximum rows to be returned by a postgREST request
 
-As well, each postgREST service requires a unique (32-char minimum) JWT secret. The var can be named as you whish, and must be referenced in `docker-compose.yaml` (look there for example).
+As well, each postgREST service requires a unique (32-char minimum) JWT secret. The var can be named as you wish, and must be referenced in `docker-compose.yaml` (look there for example).
 
 ### Docker
 
