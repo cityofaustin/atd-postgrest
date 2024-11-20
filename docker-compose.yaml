@@ -2,7 +2,7 @@ version: "3"
 services:
   haproxy:
     image: haproxy:2.6
-    restart: always
+    restart: unless-stopped
     depends_on:
       - postgrest-legacy-scripts
       - postgrest-knack-services
@@ -16,7 +16,7 @@ services:
       - "./haproxy/maps:/etc/haproxy/maps:ro"
   postgrest-legacy-scripts:
     image: postgrest/postgrest
-    restart: always
+    restart: unless-stopped
     environment:
       PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/legacy_scripts
       PGRST_DB_SCHEMA: api
@@ -25,7 +25,7 @@ services:
       PGREST_MAX_ROWS: $PGREST_MAX_ROWS
   postgrest-knack-services:
     image: postgrest/postgrest
-    restart: always
+    restart: unless-stopped
     environment:
       PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/knack_services
       PGRST_DB_SCHEMA: api
@@ -34,7 +34,7 @@ services:
       PGREST_MAX_ROWS: $PGREST_MAX_ROWS
   postgrest-ctr-data-lake:
     image: postgrest/postgrest
-    restart: always
+    restart: unless-stopped
     environment:
       PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/ctr_data_lake
       PGRST_DB_SCHEMA: api
@@ -43,7 +43,7 @@ services:
       PGREST_MAX_ROWS: 10000
   postgrest-parking:
     image: postgrest/postgrest
-    restart: always
+    restart: unless-stopped
     environment:
       PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/parking
       PGRST_DB_SCHEMA: api
@@ -52,7 +52,7 @@ services:
       PGREST_MAX_ROWS: 10000
   postgrest-road-conditions:
     image: postgrest/postgrest
-    restart: always
+    restart: unless-stopped
     environment:
       PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/road_conditions
       PGRST_DB_SCHEMA: api
@@ -61,7 +61,7 @@ services:
       PGREST_MAX_ROWS: 10000
   postgrest-bond-reporting:
     image: postgrest/postgrest
-    restart: always
+    restart: unless-stopped
     environment:
       PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/bond_reporting
       PGRST_DB_SCHEMA: api
