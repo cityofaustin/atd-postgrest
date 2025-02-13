@@ -23,6 +23,9 @@ services:
       PGRST_DB_ANON_ROLE: web_anon
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_LEGACY_SCRIPTS
       PGREST_MAX_ROWS: $PGREST_MAX_ROWS
+    env_file:
+      - ./env
+
   postgrest-knack-services:
     image: postgrest/postgrest
     restart: unless-stopped
@@ -32,6 +35,9 @@ services:
       PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_KNACK_SERVICES
       PGREST_MAX_ROWS: $PGREST_MAX_ROWS
+    env_file:
+      - ./env
+
   postgrest-ctr-data-lake:
     image: postgrest/postgrest
     restart: unless-stopped
@@ -41,6 +47,9 @@ services:
       PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_CTR_DATA_LAKE
       PGREST_MAX_ROWS: 10000
+    env_file:
+      - ./env
+
   postgrest-parking:
     image: postgrest/postgrest
     restart: unless-stopped
@@ -50,6 +59,9 @@ services:
       PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_PARKING
       PGREST_MAX_ROWS: 10000
+    env_file:
+      - ./env
+
   postgrest-road-conditions:
     image: postgrest/postgrest
     restart: unless-stopped
@@ -59,6 +71,9 @@ services:
       PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_ROAD_CONDITIONS
       PGREST_MAX_ROWS: 10000
+    env_file:
+      - ./env
+
   postgrest-bond-reporting:
     image: postgrest/postgrest
     restart: unless-stopped
@@ -68,3 +83,5 @@ services:
       PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_BOND_REPORTING
       PGREST_MAX_ROWS: 10000
+    env_file:
+      - ./env
