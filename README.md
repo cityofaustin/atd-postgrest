@@ -50,6 +50,8 @@ Because each of the services's databases are hosted in the same RDS cluster, the
 
 As well, each postgREST service requires a unique (32-char minimum) JWT secret. The var can be named as you wish, and must be referenced in `docker-compose.yaml` (look there for example).
 
+The environment file should be named `env` and stored in the root of the repository. Values can be sourced from 1Password in the `atd-postgrest` entry of the developer vault.
+
 ### Docker
 
 Each postgREST service must be defined in `docker-compose.yaml`. The service name defined in the compose yaml wil be referenced as a host in the HA proxy config.
@@ -70,7 +72,7 @@ This filed defines which how an inbound HTTP request's path will be mapped to th
 
 1. Modify `docker-compose.yaml`, `haproxy.cfg`, and `routes.map` as needed.
 2. Create an environment file in the root directory. Name it `env`.
-3. Start the services: `$ docker-compose --env-file env up -d`
+3. Start the services: `$ docker-compose up -d`
 
 ## Deployment
 
