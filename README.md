@@ -76,7 +76,7 @@ This filed defines which how an inbound HTTP request's path will be mapped to th
 
 ## Deployment
 
-Docker is configured on the production server to restart on boot.
+Access to the production postgREST endpoints is restricted to COA IP addresses. Docker is configured on the production server to restart on boot.
 
 The script `/scripts/docker-keepalive.sh` checks if the HAProxy service is running, and restarts all containers if not. This script is deployed to the prod server's crontab to run every hour.
 
