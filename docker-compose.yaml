@@ -18,9 +18,9 @@ services:
     image: postgrest/postgrest
     restart: unless-stopped
     environment:
-      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/legacy_scripts
+      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/postgrest_legacy_scripts
       PGRST_DB_SCHEMA: api
-      PGRST_DB_ANON_ROLE: web_anon
+      PGRST_DB_ANON_ROLE: postgrest_web_anon
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_LEGACY_SCRIPTS
       PGREST_MAX_ROWS: $PGREST_MAX_ROWS
     env_file:
@@ -30,9 +30,9 @@ services:
     image: postgrest/postgrest
     restart: unless-stopped
     environment:
-      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/knack_services
+      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/postgrest_knack_services
       PGRST_DB_SCHEMA: api
-      PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
+      PGRST_DB_ANON_ROLE: postgrest_web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_KNACK_SERVICES
       PGREST_MAX_ROWS: $PGREST_MAX_ROWS
     env_file:
@@ -42,9 +42,9 @@ services:
     image: postgrest/postgrest
     restart: unless-stopped
     environment:
-      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/ctr_data_lake
+      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/postgrest_ctr_data_lake
       PGRST_DB_SCHEMA: api
-      PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
+      PGRST_DB_ANON_ROLE: postgrest_web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_CTR_DATA_LAKE
       PGREST_MAX_ROWS: 10000
     env_file:
@@ -54,9 +54,9 @@ services:
     image: postgrest/postgrest
     restart: unless-stopped
     environment:
-      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/parking
+      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/postgrest_parking
       PGRST_DB_SCHEMA: api
-      PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
+      PGRST_DB_ANON_ROLE: postgrest_web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_PARKING
       PGREST_MAX_ROWS: 10000
     env_file:
@@ -66,9 +66,10 @@ services:
     image: postgrest/postgrest
     restart: unless-stopped
     environment:
-      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/road_conditions
+      #PGRST_LOG_LEVEL: debug
+      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/postgrest_road_conditions
       PGRST_DB_SCHEMA: api
-      PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
+      PGRST_DB_ANON_ROLE: postgrest_web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_ROAD_CONDITIONS
       PGREST_MAX_ROWS: 10000
     env_file:
@@ -78,9 +79,9 @@ services:
     image: postgrest/postgrest
     restart: unless-stopped
     environment:
-      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/bond_reporting
+      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/postgrest_bond_reporting
       PGRST_DB_SCHEMA: api
-      PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
+      PGRST_DB_ANON_ROLE: postgrest_web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_BOND_REPORTING
       PGREST_MAX_ROWS: 10000
     env_file:
