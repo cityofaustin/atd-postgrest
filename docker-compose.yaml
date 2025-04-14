@@ -10,7 +10,7 @@ services:
       - postgrest-parking
       - postgrest-bond-reporting
     ports:
-      - "80:80"
+      - "9001:80"
     volumes:
       - "./haproxy/config:/usr/local/etc/haproxy:ro"
       - "./haproxy/maps:/etc/haproxy/maps:ro"
