@@ -33,9 +33,7 @@ The root endpoint is available at [http://atd-postgrest.austinmobility.io/](http
 | knack services  | [atd-knack-services](https://github.com/cityofaustin/atd-knack-services)   | `/knack-services/`  |
 | legacy scripts  | [atd-data-deploy](https://github.com/cityofaustin/atd-data-deploy)         | `/legacy-scripts/`  |
 | parking         | [atd-parking-data](https://github.com/cityofaustin/atd-parking-data)       | `/parking/`         |
-| CTR data lake   | [atd-data-lake](https://github.com/cityofaustin/atd-data-lake)             | `/ctr-data-lake/`   |
 | road conditions | [atd-road-conditions](https://github.com/cityofaustin/atd-road-conditions) | `/road-conditions/` |
-| bond reporting  | [atd-bond-reporting](https://github.com/cityofaustin/atd-bond-reporting)   | `/bond-reporting/`  |
 
 ## Configuration
 
@@ -50,7 +48,7 @@ Because each of the services's databases are hosted in the same RDS cluster, the
 
 As well, each postgREST service requires a unique (32-char minimum) JWT secret. The var can be named as you wish, and must be referenced in `docker-compose.yaml` (look there for example).
 
-The environment file should be named `env` and stored in the root of the repository. Values can be sourced from 1Password in the `atd-postgrest` entry of the developer vault.
+The environment file *must* be named `.env` and stored in the root of the repository. This will ensure that variables are properly interopolated into the docker-compose envirnoment. The variable values can be sourced from 1Password in the `atd-postgrest` entry of the developer vault. 
 
 ### Docker
 
@@ -89,5 +87,5 @@ Any changes to this repository must be manually pulled on the prod server.
 If you make changes to the schema, permissions, or secrets of any of the running postgREST services, you will need to restart the docker-compose service.
 
 ```
-$ docker-compose --env-file env restart
+$ docker-compose restart
 ```
