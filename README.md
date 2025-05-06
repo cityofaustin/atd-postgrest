@@ -48,7 +48,7 @@ Because each of the services's databases are hosted in the same RDS cluster, the
 
 As well, each postgREST service requires a unique (32-char minimum) JWT secret. The var can be named as you wish, and must be referenced in `docker-compose.yaml` (look there for example).
 
-The environment file *must* be named `.env` and stored in the root of the repository. This will ensure that variables are properly interopolated into the docker-compose envirnoment. The variable values can be sourced from 1Password in the `atd-postgrest` entry of the developer vault. 
+The environment file *must* be named `.env` and stored in the root of the repository. This will ensure that variables are properly interopolated into the docker-compose environment. The variable values can be sourced from 1Password in the `atd-postgrest` entry of the developer vault. 
 
 ### Docker
 
