@@ -4,3 +4,4 @@
 /legacy-scripts server_legacy_scripts
 /parking server_parking
 /road-conditions server_road_conditions
+/bond-reporting server_bond_reporting
