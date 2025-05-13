@@ -1,16 +1,13 @@
 --
--- PostgreSQL database dump
+-- This init file was generated from a postgreSQL database dump of the
+-- production knack-serivces database in May 2025. It is for basic testing
+-- purposes only and may not reflect the current production state
 --
-
--- Dumped from database version 16.3
--- Dumped by pg_dump version 16.8 (Homebrew)
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;

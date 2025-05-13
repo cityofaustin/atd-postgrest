@@ -71,7 +71,7 @@ This filed defines which how an inbound HTTP request's path will be mapped to th
 
 1. Modify `docker-compose.yaml`, `haproxy.cfg`, and `routes.map` as needed.
 2. Create an environment file in the root directory. Name it `env`.
-3. Start the services: `$ docker-compose up -d`
+3. Start the services: `$ docker compose up -d`
 
 ## Deployment
 
@@ -85,8 +85,49 @@ You can inspect the crontab with `sudo crontab -l`.
 
 Any changes to this repository must be manually pulled on the prod server.
 
-If you make changes to the schema, permissions, or secrets of any of the running postgREST services, you will need to restart the docker-compose service.
+If you make changes to the schema, permissions, or secrets of any of the running postgREST services, you will need to restart the docker compose service.
 
 ```
-$ docker-compose restart
+$ docker compose restart
+```
+
+## Local dev
+
+We don't currently have a complete local dev environment, although it is possible to launch a basic end-to-end test of the `knack-services` service. There is a bit of commentary on this subject in https://github.com/cityofaustin/atd-postgrest/pull/8. 
+
+To start the `knack-services` test environment.
+
+1. Terminate any other process you have using port `5432`.
+
+2. In the root of the repo, save an `.env` file which contains the following:
+
+```shell
+PG_HOST=postgres
+PG_USER=postgres
+PG_PASSWORD=postgres
+PGRST_JWT_SECRET_KNACK_SERVICES=----for-testing-purposes-only----
+PGRST_JWT_SECRET_PARKING=----for-testing-purposes-only----
+PGRST_JWT_SECRET_LEGACY_SCRIPTS=----for-testing-purposes-only----
+PGRST_JWT_SECRET_ROAD_CONDITIONS=----for-testing-purposes-only----
+PGREST_MAX_ROWS=1000
+```
+
+1. Start the local stack using the primary compose file and the `local` one. This second compose file adds a postgres database with an empty database matching the `knack-services` schema.
+
+```shell
+docker compose -f docker-compose.yaml -f docker-compose-local.yaml up
+```
+
+2. Should now be able to make an authenticated request to the `/knack-services/knack` endpoint. Note the use of the JWT, which configured using the JWT secret in the `.env` file.
+
+```
+curl http://0.0.0.0:9001/knack-services/knack -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYXBpX3VzZXIifQ.z2R8GY8J23EBFWpyLQGqs8iJK1gsCm3Izg1Ez3qq5CQ"
+```
+
+It should return an empty array: `[]`.
+
+3. Lastly, try to `GET` any endpoint without the bearer token, and observe that access is restricted
+
+```
+curl http://0.0.0.0:9001/knack-services/knack
 ```
