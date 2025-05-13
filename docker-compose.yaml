@@ -6,7 +6,6 @@ services:
     depends_on:
       - postgrest-legacy-scripts
       - postgrest-knack-services
-      - postgrest-ctr-data-lake
       - postgrest-parking
       - postgrest-bond-reporting
     ports:
@@ -14,6 +13,7 @@ services:
     volumes:
       - "./haproxy/config:/usr/local/etc/haproxy:ro"
       - "./haproxy/maps:/etc/haproxy/maps:ro"
+
   postgrest-legacy-scripts:
     image: postgrest/postgrest
     restart: unless-stopped
@@ -23,8 +23,6 @@ services:
       PGRST_DB_ANON_ROLE: postgrest_web_anon
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_LEGACY_SCRIPTS
       PGREST_MAX_ROWS: $PGREST_MAX_ROWS
-    env_file:
-      - ./env
 
   postgrest-knack-services:
     image: postgrest/postgrest
@@ -35,20 +33,6 @@ services:
       PGRST_DB_ANON_ROLE: postgrest_web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_KNACK_SERVICES
       PGREST_MAX_ROWS: $PGREST_MAX_ROWS
-    env_file:
-      - ./env
-
-  postgrest-ctr-data-lake:
-    image: postgrest/postgrest
-    restart: unless-stopped
-    environment:
-      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/postgrest_ctr_data_lake
-      PGRST_DB_SCHEMA: api
-      PGRST_DB_ANON_ROLE: postgrest_web_anon #In production this role should not be the same as the one used for the connection
-      PGRST_JWT_SECRET: $PGRST_JWT_SECRET_CTR_DATA_LAKE
-      PGREST_MAX_ROWS: 10000
-    env_file:
-      - ./env
 
   postgrest-parking:
     image: postgrest/postgrest
@@ -59,8 +43,6 @@ services:
       PGRST_DB_ANON_ROLE: postgrest_web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_PARKING
       PGREST_MAX_ROWS: 10000
-    env_file:
-      - ./env
 
   postgrest-road-conditions:
     image: postgrest/postgrest
@@ -72,8 +54,6 @@ services:
       PGRST_DB_ANON_ROLE: postgrest_web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_ROAD_CONDITIONS
       PGREST_MAX_ROWS: 10000
-    env_file:
-      - ./env
 
   postgrest-bond-reporting:
     image: postgrest/postgrest
@@ -84,5 +64,3 @@ services:
       PGRST_DB_ANON_ROLE: postgrest_web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_BOND_REPORTING
       PGREST_MAX_ROWS: 10000
-    env_file:
-      - ./env
