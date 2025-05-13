@@ -121,7 +121,7 @@ docker compose -f docker-compose.yaml -f docker-compose-local.yaml up
 2. Should now be able to make an authenticated request to the `/knack-services/knack` endpoint. Note the use of the JWT, which configured using the JWT secret in the `.env` file.
 
 ```
-curl http://0.0.0.0:9001/knack-services/knack -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYXBpX3VzZXIifQ.z2R8GY8J23EBFWpyLQGqs8iJK1gsCm3Izg1Ez3qq5CQ"
+curl http://127.0.0.1:9001/knack-services/knack -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYXBpX3VzZXIifQ.z2R8GY8J23EBFWpyLQGqs8iJK1gsCm3Izg1Ez3qq5CQ"
 ```
 
 It should return an empty array: `[]`.
@@ -129,5 +129,5 @@ It should return an empty array: `[]`.
 3. Lastly, try to `GET` any endpoint without the bearer token, and observe that access is restricted
 
 ```
-curl http://0.0.0.0:9001/knack-services/knack
+curl http://127.0.0.1:9001/knack-services/knack
 ```
