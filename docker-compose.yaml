@@ -1,7 +1,7 @@
 version: "3"
 services:
   haproxy:
-    image: haproxy:2.6
+    image: haproxy:lts
     restart: unless-stopped
     depends_on:
       - postgrest-legacy-scripts
