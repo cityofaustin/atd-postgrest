@@ -28,13 +28,16 @@ The root endpoint is available at [http://atd-postgrest.austinmobility.io/](http
 
 ## Services
 
-| name            | repo                                                                       | route               |
-| --------------- | -------------------------------------------------------------------------- | ------------------- |
-| knack services  | [atd-knack-services](https://github.com/cityofaustin/atd-knack-services)   | `/knack-services/`  |
-| legacy scripts  | [atd-data-deploy](https://github.com/cityofaustin/atd-data-deploy)         | `/legacy-scripts/`  |
-| parking         | [atd-parking-data](https://github.com/cityofaustin/atd-parking-data)       | `/parking/`         |
-| road conditions | [atd-road-conditions](https://github.com/cityofaustin/atd-road-conditions) | `/road-conditions/` |
-| bond reporting  | [atd-bond-reporting](https://github.com/cityofaustin/atd-bond-reporting)   | `/bond-reporting/`  |
+## Services
+
+| Name                     | Repo                                                                                         | Route                      |
+|--------------------------|----------------------------------------------------------------------------------------------|----------------------------|
+| Knack Services           | [atd-knack-services](https://github.com/cityofaustin/atd-knack-services)                     | /knack-services/           |
+| Legacy Scripts           | [atd-data-deploy](https://github.com/cityofaustin/atd-data-deploy)                           | /legacy-scripts/           |
+| Parking                  | [atd-parking-data](https://github.com/cityofaustin/atd-parking-data)                         | /parking/                  |
+| Road Conditions          | [atd-road-conditions](https://github.com/cityofaustin/atd-road-conditions)                   | /road-conditions/          |
+| Bond Reporting           | [atd-bond-reporting](https://github.com/cityofaustin/atd-bond-reporting)                     | /bond-reporting/           |
+| Public Safety Incidents  | [atd-traffic-incident-reports](https://github.com/cityofaustin/atd-traffic-incident-reports) | /public-safety-incidents/  |
 
 ## Configuration
 

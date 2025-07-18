@@ -7,6 +7,7 @@ services:
       - postgrest-knack-services
       - postgrest-parking
       - postgrest-bond-reporting
+      - postgrest-public-safety-incidents
     ports:
       - "9001:80"
     volumes:
@@ -62,4 +63,14 @@ services:
       PGRST_DB_SCHEMA: api
       PGRST_DB_ANON_ROLE: postgrest_web_anon #In production this role should not be the same as the one used for the connection
       PGRST_JWT_SECRET: $PGRST_JWT_SECRET_BOND_REPORTING
+      PGREST_MAX_ROWS: 10000
+
+  postgrest-public-safety-incidents:
+    image: postgrest/postgrest:v13.0.4
+    restart: unless-stopped
+    environment:
+      PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/postgrest_public_safety_incidents
+      PGRST_DB_SCHEMA: api
+      PGRST_DB_ANON_ROLE: postgrest_web_anon #In production this role should not be the same as the one used for the connection
+      PGRST_JWT_SECRET: $PGRST_JWT_SECRET_PUBLIC_SAFETY_INCIDENTS
       PGREST_MAX_ROWS: 10000
