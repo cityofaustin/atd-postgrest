@@ -15,7 +15,7 @@ services:
       - "./haproxy/maps:/etc/haproxy/maps:ro"
 
   postgrest-legacy-scripts:
-    image: postgrest/postgrest:v13.0.7
+    image: postgrest/postgrest:v14.0
     restart: unless-stopped
     environment:
       PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/postgrest_legacy_scripts
@@ -25,7 +25,7 @@ services:
       PGREST_MAX_ROWS: $PGREST_MAX_ROWS
 
   postgrest-knack-services:
-    image: postgrest/postgrest:v13.0.7
+    image: postgrest/postgrest:v14.0
     restart: unless-stopped
     environment:
       PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/postgrest_knack_services
@@ -35,7 +35,7 @@ services:
       PGREST_MAX_ROWS: $PGREST_MAX_ROWS
 
   postgrest-parking:
-    image: postgrest/postgrest:v13.0.7
+    image: postgrest/postgrest:v14.0
     restart: unless-stopped
     environment:
       PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/postgrest_parking
@@ -45,7 +45,7 @@ services:
       PGREST_MAX_ROWS: 10000
 
   postgrest-road-conditions:
-    image: postgrest/postgrest:v13.0.7
+    image: postgrest/postgrest:v14.0
     restart: unless-stopped
     environment:
       #PGRST_LOG_LEVEL: debug
@@ -56,7 +56,7 @@ services:
       PGREST_MAX_ROWS: 10000
 
   postgrest-bond-reporting:
-    image: postgrest/postgrest:v13.0.7
+    image: postgrest/postgrest:v14.0
     restart: unless-stopped
     environment:
       PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/postgrest_bond_reporting
@@ -66,7 +66,7 @@ services:
       PGREST_MAX_ROWS: 10000
 
   postgrest-public-safety-incidents:
-    image: postgrest/postgrest:v13.0.7
+    image: postgrest/postgrest:v14.0
     restart: unless-stopped
     environment:
       PGRST_DB_URI: postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/postgrest_public_safety_incidents
